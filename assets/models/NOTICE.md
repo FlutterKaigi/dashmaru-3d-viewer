@@ -1,7 +1,7 @@
 # だしゅまる 3Dモデルの権利表記
 
-- キャラクター「だしゅまる」: © 2024 FlutterKaigi
-- 3Dモデリング・アニメーション: © 2026 Yakuran (yakitama5)
+- キャラクター「だしゅまる」: © 2026 FlutterKaigi
+- 3Dモデリング・アニメーション: © 2026 FlutterKaigi
 - 公開元: https://github.com/FlutterKaigi/dashmaru-3d-viewer
 - ライセンス: Creative Commons Attribution-NonCommercial-NoDerivatives 4.0 International
   （表示・非営利・改変禁止 4.0 国際 / CC BY-NC-ND 4.0）
@@ -16,7 +16,7 @@
 
 本モデルは提供された参考資料をもとに立体化したものです。
 参考画像そのものは配布物に含みません。
-本リポジトリでの公開は、キャラクターの権利をモデル作者に移転するものではありません。
+原キャラクターと3Dモデル・アニメーションの権利者はいずれもFlutterKaigiです。
 
 スポンサー向けの商用利用に関する追加許諾は設けていません。
 利用条件の詳細はリポジトリの `docs/LICENSING.md` とライセンス全文を参照してください。

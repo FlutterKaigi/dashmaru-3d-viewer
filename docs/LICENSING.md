@@ -3,6 +3,9 @@
 このリポジトリでは、プログラムと3Dモデルに異なるライセンスを適用します。
 リポジトリ全体を単一のMITライセンス素材として扱わないでください。
 
+本プロジェクトのコードおよびだしゅまるのキャラクター・3Dモデル・アニメーションの
+権利表記は © 2026 FlutterKaigi です。
+
 | 対象 | ライセンス |
 | --- | --- |
 | ビューアのコード（`lib/`、`hook/`、`test/`、Web・macOSのアプリコード）、設定、ドキュメント | [MIT](../LICENSE) |
@@ -39,8 +42,8 @@
 クレジットの記載例（用途・媒体に応じて合理的な方法で表示してください）:
 
 ```text
-だしゅまる © 2024 FlutterKaigi
-3Dモデル・アニメーション © 2026 Yakuran (yakitama5)
+だしゅまる © 2026 FlutterKaigi
+3Dモデル・アニメーション © 2026 FlutterKaigi
 CC BY-NC-ND 4.0
 https://creativecommons.org/licenses/by-nc-nd/4.0/
 https://github.com/FlutterKaigi/dashmaru-3d-viewer

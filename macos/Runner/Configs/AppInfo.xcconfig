@@ -11,4 +11,4 @@ PRODUCT_NAME = dashmaru_3d_viewer
 PRODUCT_BUNDLE_IDENTIFIER = jp.flutterkaigi.dashmaru3dViewer
 
 // The copyright displayed in application information
-PRODUCT_COPYRIGHT = Code: © 2026 Yakuran and contributors / MIT. Character: © 2024 FlutterKaigi. 3D model: © 2026 Yakuran / CC BY-NC-ND 4.0.
+PRODUCT_COPYRIGHT = Code: © 2026 FlutterKaigi / MIT. Character, 3D model and animations: © 2026 FlutterKaigi / CC BY-NC-ND 4.0.

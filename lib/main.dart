@@ -665,8 +665,8 @@ class _DashmaruViewerState extends State<DashmaruViewer> {
       Expanded(
         child: Text(
           compact
-              ? '© FlutterKaigi'
-              : 'だしゅまる © FlutterKaigi  ·  CC BY-NC-ND 4.0',
+              ? '© 2026 FlutterKaigi'
+              : 'だしゅまる © 2026 FlutterKaigi  ·  CC BY-NC-ND 4.0',
           textAlign: TextAlign.end,
           overflow: TextOverflow.ellipsis,
           maxLines: 1,
@@ -680,9 +680,9 @@ class _DashmaruViewerState extends State<DashmaruViewer> {
           context: context,
           applicationName: 'だしゅまる 3D',
           applicationLegalese:
-              'キャラクター © 2024 FlutterKaigi\n'
-              '3Dモデル © 2026 Yakuran / CC BY-NC-ND 4.0\n'
-              'ビューアのコード: MIT',
+              'キャラクター・3Dモデル・アニメーション\n'
+              '© 2026 FlutterKaigi / CC BY-NC-ND 4.0\n'
+              'ビューアのコード: © 2026 FlutterKaigi / MIT',
         ),
       ),
     ],

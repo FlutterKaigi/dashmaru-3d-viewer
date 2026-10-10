@@ -58,7 +58,7 @@ class Glb:
             "asset": {
                 "version": "2.0",
                 "generator": "Dashmaru parametric sculpture / Python",
-                "copyright": "Character (c) 2024 FlutterKaigi. 3D model (c) 2026 Yakuran (yakitama5). CC BY-NC-ND 4.0.",
+                "copyright": "Character, 3D model and animations (c) 2026 FlutterKaigi. CC BY-NC-ND 4.0.",
                 "extras": {
                     "license": "CC-BY-NC-ND-4.0",
                     "licenseUrl": "https://creativecommons.org/licenses/by-nc-nd/4.0/",

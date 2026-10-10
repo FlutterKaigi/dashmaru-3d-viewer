@@ -12,7 +12,7 @@ from check_generated_model import ModelMismatch, compare_assets, compare_glb, co
 
 def fixture():
     doc = {
-        "asset": {"version": "2.0", "copyright": "FlutterKaigi / Yakuran", "extras": {"license": "CC-BY-NC-ND-4.0"}},
+        "asset": {"version": "2.0", "copyright": "(c) 2026 FlutterKaigi", "extras": {"license": "CC-BY-NC-ND-4.0"}},
         "buffers": [{"byteLength": 20}],
         "bufferViews": [
             {"buffer": 0, "byteOffset": 0, "byteLength": 12},

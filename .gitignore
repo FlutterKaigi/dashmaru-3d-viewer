@@ -1,0 +1,27 @@
+# Dart / Flutter の依存キャッシュ・生成物
+.dart_tool/
+.flutter-plugins
+.flutter-plugins-dependencies
+.pub-cache/
+.pub/
+build/
+coverage/
+pubspec_overrides.yaml
+
+# Python のキャッシュ
+__pycache__/
+*.py[cod]
+
+# エディタ・OS・ローカル設定
+.idea/
+*.iml
+.vscode/
+.DS_Store
+*.log
+.env
+.env.*
+!.env.example
+.private-assets/
+
+# 元の参考資料は配布対象外。公開モデルと生成プログラムはGit管理する。
+assets/dashmaru/

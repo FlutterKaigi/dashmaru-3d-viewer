@@ -1,0 +1,66 @@
+{
+  "license": "CC-BY-NC-ND-4.0",
+  "licenseUrl": "https://creativecommons.org/licenses/by-nc-nd/4.0/",
+  "height": 3.04,
+  "front": "+Z",
+  "up": "+Y",
+  "meshes": 52,
+  "joints": 28,
+  "rig": "Soft body and crest, distributed wing flex, two-bone IK legs and articulated forefeet",
+  "triangles": 207534,
+  "animations": [
+    {
+      "name": "Walk",
+      "tracks": 89
+    },
+    {
+      "name": "Jump",
+      "tracks": 89
+    },
+    {
+      "name": "Wave",
+      "tracks": 89
+    },
+    {
+      "name": "Blink",
+      "tracks": 89
+    },
+    {
+      "name": "Idle",
+      "tracks": 89
+    },
+    {
+      "name": "Run",
+      "tracks": 89
+    },
+    {
+      "name": "Shake",
+      "tracks": 89
+    },
+    {
+      "name": "Sit",
+      "tracks": 89
+    },
+    {
+      "name": "Nod",
+      "tracks": 89
+    },
+    {
+      "name": "Tilt",
+      "tracks": 89
+    },
+    {
+      "name": "Bow",
+      "tracks": 89
+    },
+    {
+      "name": "Celebrate",
+      "tracks": 89
+    },
+    {
+      "name": "Stretch",
+      "tracks": 89
+    }
+  ],
+  "bytes": 11192812
+}

@@ -1,0 +1,92 @@
+name: CI / GitHub Pages
+
+on:
+  push:
+    branches: [main]
+  pull_request:
+  workflow_dispatch:
+
+permissions:
+  contents: read
+
+jobs:
+  check-and-build:
+    name: 品質確認・Web ビルド
+    runs-on: ubuntu-24.04
+    timeout-minutes: 30
+    concurrency:
+      group: ci-${{ github.workflow }}-${{ github.event.pull_request.number || github.ref }}
+      cancel-in-progress: true
+    steps:
+      - name: ソースを取得
+        uses: actions/checkout@fbc6f3992d24b796d5a048ff273f7fcc4a7b6c09 # v5
+        with:
+          persist-credentials: false
+
+      - name: mise.toml の Flutter をインストール
+        uses: jdx/mise-action@5228313ee0372e111a38da051671ca30fc5a96db # v3
+
+      - name: 依存関係をインストール
+        run: flutter pub get --enforce-lockfile
+
+      - name: Dart のフォーマットを確認
+        run: dart format --output=none --set-exit-if-changed lib test hook
+
+      - name: 静的解析
+        run: flutter analyze
+
+      - name: テスト
+        run: flutter test
+
+      - name: モデル比較ツールをテスト
+        run: python3 -m unittest discover -s tool -p 'test_*.py'
+
+      - name: モデルと生成スクリプトの同期を確認
+        run: python3 tool/check_generated_model.py
+
+      # 表面品質に加え、キーフレーム間の補間位置でも接地・姿勢を検証する。
+      - name: モデル・表面・アニメーションを検証
+        run: python3 tool/check_dashmaru.py --subframes 3
+
+      # Private リポジトリおよび fork の PR でも同じ Web ビルドを検証する。
+      - name: GitHub Pages 用に Web ビルド
+        run: flutter build web --release --base-href /dashmaru-3d-viewer/
+
+      - name: Pages 用成果物を保存
+        if: >-
+          github.repository == 'FlutterKaigi/dashmaru-3d-viewer' &&
+          github.event.repository.private == false &&
+          github.ref == 'refs/heads/main' &&
+          github.event_name != 'pull_request'
+        uses: actions/upload-pages-artifact@56afc609e74202658d3ffba0e8f6dda462b719fa # v3
+        with:
+          path: build/web
+
+  deploy:
+    name: GitHub Pages に公開
+    needs: check-and-build
+    # リポジトリ公開後の main push / 手動実行だけがデプロイ権限を持つ。
+    if: >-
+      github.repository == 'FlutterKaigi/dashmaru-3d-viewer' &&
+      github.event.repository.private == false &&
+      github.ref == 'refs/heads/main' &&
+      github.event_name != 'pull_request'
+    runs-on: ubuntu-24.04
+    timeout-minutes: 15
+    permissions:
+      pages: write
+      id-token: write
+    concurrency:
+      group: github-pages
+      cancel-in-progress: false
+    environment:
+      name: github-pages
+      url: ${{ steps.deployment.outputs.page_url }}
+    steps:
+      # 公開後に Settings > Pages > Source: GitHub Actions を設定する。
+      - name: Pages の設定を確認
+        uses: actions/configure-pages@983d7736d9b0ae728b81ab479565c72886d7745b # v5
+
+      - name: デプロイ
+        id: deployment
+        uses: actions/deploy-pages@d6db90164ac5ed86f2b6aed7e0febac5b3c0c03e # v4

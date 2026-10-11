@@ -34,6 +34,15 @@ int _motionColumns(double width) => width < 480
     ? 4
     : 7;
 
+/// Invalid UTF-8 in shared URLs falls back to the default view settings.
+Map<String, String> parseViewerQuery(Uri uri) {
+  try {
+    return uri.queryParameters;
+  } on FormatException {
+    return const {};
+  }
+}
+
 void main() {
   WidgetsFlutterBinding.ensureInitialized();
   LicenseRegistry.addLicense(() async* {
@@ -97,8 +106,8 @@ class _DashmaruViewerState extends State<DashmaruViewer> {
   }
 
   Future<void> _load() async {
-    final query = Uri.base.queryParameters;
     try {
+      final query = parseViewerQuery(Uri.base);
       await _world.load(
         initialMotion: DashmaruMotion.parse(query['motion']),
         initialExpression: DashmaruExpression.parse(query['expression']),

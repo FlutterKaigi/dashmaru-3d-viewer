@@ -14,7 +14,7 @@ void main(List<String> args) async {
         'or run python3 tool/build_dashmaru.py from the repository root.',
       );
     }
-    // Reference photos stay local; only authored models enter the asset build.
+    // Convert the distributed model assets for Flutter Scene.
     buildScenes(
       buildInput: input,
       buildOutput: output,

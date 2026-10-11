@@ -1,9 +1,9 @@
 #!/usr/bin/env python3
 """Rebuild the hand-authored Dashmaru GLB, using only Python's standard library.
 
-Y is up, +Z is the face, metres are arbitrary (height 3.04). The source is a
-parametric sculpture based on the supplied three-view and 3D reference pictures;
-no reference image is embedded. Every marking follows the curved body surface.
+Y is up, +Z is the face, metres are arbitrary (height 3.04).
+The model uses parametric geometry with no embedded images.
+Every marking follows the curved body surface.
 Run: python3 tool/build_dashmaru.py
 """
 

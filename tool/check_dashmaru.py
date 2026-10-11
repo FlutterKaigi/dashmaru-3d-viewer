@@ -1461,8 +1461,8 @@ class Model:
                 and all(close(a, b) for a, b in zip(times, actual_times)),
                 f"Walk regression: changed timing or interpolation for {key}",
             )
-            # The requested heel/toe pass changes leg IK, but the timing and
-            # established upper-body cadence must remain untouched.
+            # Leg IK may change, but timing and upper-body poses must match
+            # the baseline.
             if key[0] not in {
                 side + part
                 for side in ("Left", "Right")

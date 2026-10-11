@@ -23,5 +23,5 @@ __pycache__/
 !.env.example
 .private-assets/
 
-# 元の参考資料は配布対象外。公開モデルと生成プログラムはGit管理する。
+# 配布対象外の参考資料
 assets/dashmaru/

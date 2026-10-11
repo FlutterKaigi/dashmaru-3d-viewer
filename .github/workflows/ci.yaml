@@ -50,7 +50,6 @@ jobs:
       - name: モデル・表面・アニメーションを検証
         run: python3 tool/check_dashmaru.py --subframes 3
 
-      # Private リポジトリおよび fork の PR でも同じ Web ビルドを検証する。
       - name: GitHub Pages 用に Web ビルド
         run: flutter build web --release --base-href /dashmaru-3d-viewer/
 
@@ -67,7 +66,6 @@ jobs:
   deploy:
     name: GitHub Pages に公開
     needs: check-and-build
-    # リポジトリ公開後の main push / 手動実行だけがデプロイ権限を持つ。
     if: >-
       github.repository == 'FlutterKaigi/dashmaru-3d-viewer' &&
       github.event.repository.private == false &&
@@ -85,7 +83,6 @@ jobs:
       name: github-pages
       url: ${{ steps.deployment.outputs.page_url }}
     steps:
-      # 公開後に Settings > Pages > Source: GitHub Actions を設定する。
       - name: Pages の設定を確認
         uses: actions/configure-pages@45bfe0192ca1faeb007ade9deae92b16b8254a0d # v6.0.0
 

@@ -1,7 +1,7 @@
-"""Reference-based, curved face markings for the Dashmaru glTF sculpture.
+"""Curved face markings for the Dashmaru glTF sculpture.
 
-The drawing references use the same round eye outlines for happy arches and
-dizzy spirals. A tightly squeezed pair of eyelids adds an exertion expression.
+Happy arches and dizzy spirals share the same round eye outlines.
+A tightly squeezed pair of eyelids adds an exertion expression.
 Geometry stays a rigid child of Head,
 matching the normal eyes while the soft body bends around it. The Flutter app
 selects the visible group independently of the animation channels.
@@ -66,7 +66,7 @@ def build_expressions(g, head, head_position, patch, tube, surface, circle, ink,
                 )
 
             if expression == "Smile":
-                # clap.PNG: round, upward arches inside the white of each eye.
+                # Round, upward arches inside the white of each eye.
                 points = [
                     (
                         x + 0.063 * math.cos(math.pi * i / 48),
@@ -76,7 +76,7 @@ def build_expressions(g, head, head_position, patch, tube, surface, circle, ink,
                 ]
                 radius = 0.0185
             else:
-                # guruguru.PNG: an open spiral, with space between the turns so
+                # An open spiral, with space between the turns so
                 # the pupil remains readable at the demo's normal camera size.
                 points = []
                 for i in range(105):

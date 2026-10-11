@@ -4,12 +4,6 @@ FlutterKaigi のキャラクター「だしゅまる」を、ブラウザーで�
 Flutter と Flutter Scene で、13種類の動き・4種類の表情・4種類の背景を切り替えられます。
 モデルデータと生成プログラムを同梱し、このリポジトリだけで起動・ビルドできます。
 
-**デモ公開先:** 調整中です。公開前に [ドメインと Pages の設定](docs/development.md#公開urlとcloudflare)を確認してください。
-
-リポジトリが Private の間、GitHub Pages へのデプロイは行いません。
-公開への切り替えと Pages・ドメインの設定が済んだ後、`main` の更新からデモを公開します。
-組織のカスタムドメインと転送設定があるため、標準の `github.io` URL をそのまま公開先として案内することはできません。
-
 ## できること
 
 - 歩く・ジャンプ・手を振る・まばたき・待機・走る・ぶんぶん・座る・うなずく・首かしげ・おじぎ・よろこぶ・のびの13種類の動きを再生。
@@ -36,12 +30,12 @@ mise exec -- flutter pub get
 mise exec -- flutter run -d chrome
 ```
 
-Private の間は、リポジトリへのアクセス権が必要です。
 GLB は Git に含まれているので、参考画像の取得やモデルの再生成は初回起動に不要です。
 初回ビルド時に、Flutter Scene のビルドフックがモデルの変換とシェーダーのコンパイルを行います。
 
 Web では Flutter Scene の WebGL2 バックエンドを使います。
 WebGL2 が利用できるブラウザーとグラフィックス環境が必要です。
+描画エンジンやフォントの取得に、Google の外部 CDN を利用する場合があります。
 macOS 用のプロジェクトも同梱しています。Xcode などの Flutter 開発環境を用意したうえで、
 `mise exec -- flutter run -d macos` で起動できます。macOS では Flutter GPU / Impeller を使用します。
 
@@ -93,13 +87,12 @@ mise exec -- flutter test
 python3 -m unittest discover -s tool -p 'test_*.py'
 python3 tool/check_generated_model.py
 python3 tool/check_dashmaru.py
-mise exec -- flutter build web --release --base-href /dashmaru-3d-viewer/
+mise exec -- flutter build web --release
 ```
 
 モデルを再生成する場合は `python3 tool/build_dashmaru.py` を実行します。
 生成プログラムの変更と生成物の公開には、それぞれのライセンスが関係するため、
 先に [ライセンスについて](docs/LICENSING.md)を確認してください。
 
-構成、再生成、描画確認、Pages の公開手順は [開発ガイド](docs/development.md)にまとめています。
-変更の提案は [CONTRIBUTING.md](CONTRIBUTING.md)、移行元と移行範囲は [移行記録](docs/migration.md)を参照してください。
-確認したセキュリティ項目と公開前の設定は [セキュリティ確認記録](docs/security.md)を参照してください。
+構成、再生成、描画確認は [開発ガイド](docs/development.md)にまとめています。
+変更の提案は [CONTRIBUTING.md](CONTRIBUTING.md)を参照してください。

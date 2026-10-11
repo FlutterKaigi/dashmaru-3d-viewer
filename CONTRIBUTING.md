@@ -30,7 +30,7 @@ mise exec -- flutter test
 python3 -m unittest discover -s tool -p 'test_*.py'
 python3 tool/check_generated_model.py
 python3 tool/check_dashmaru.py
-mise exec -- flutter build web --release --base-href /dashmaru-3d-viewer/
+mise exec -- flutter build web --release
 ```
 
 描画や操作を変えた場合は、ブラウザーでも変更箇所を確認してください。
@@ -46,7 +46,7 @@ Widget テストでは実際の GPU 描画までは確認できません。
 ✨feat: 背景を切り替える操作を追加
 🐛fix: 座位から立ち上がる途中の一時停止を修正
 📚doc: モデルの利用条件と出典を記載
-🔧chore: GitHub Pages の公開ワークフローを追加
+🔧chore: 開発ツールのバージョンを更新
 ```
 
 Pull Request には、解決する問題、変更後の動作、検証結果を記載します。

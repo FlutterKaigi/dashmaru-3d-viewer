@@ -4,10 +4,11 @@ FlutterKaigi のキャラクター「だしゅまる」を、ブラウザーで�
 Flutter と Flutter Scene で、13種類の動き・4種類の表情・4種類の背景を切り替えられます。
 モデルデータと生成プログラムを同梱し、このリポジトリだけで起動・ビルドできます。
 
-**デモ公開予定:** [flutterkaigi.github.io/dashmaru-3d-viewer](https://flutterkaigi.github.io/dashmaru-3d-viewer/)
+**デモ公開先:** 調整中です。公開前に [ドメインと Pages の設定](docs/development.md#公開urlとcloudflare)を確認してください。
 
 リポジトリが Private の間、GitHub Pages へのデプロイは行いません。
-公開への切り替えと Pages の設定が済んだ後、`main` の更新からデモを公開します。
+公開への切り替えと Pages・ドメインの設定が済んだ後、`main` の更新からデモを公開します。
+組織のカスタムドメインと転送設定があるため、標準の `github.io` URL をそのまま公開先として案内することはできません。
 
 ## できること
 
@@ -101,3 +102,4 @@ mise exec -- flutter build web --release --base-href /dashmaru-3d-viewer/
 
 構成、再生成、描画確認、Pages の公開手順は [開発ガイド](docs/development.md)にまとめています。
 変更の提案は [CONTRIBUTING.md](CONTRIBUTING.md)、移行元と移行範囲は [移行記録](docs/migration.md)を参照してください。
+確認したセキュリティ項目と公開前の設定は [セキュリティ確認記録](docs/security.md)を参照してください。

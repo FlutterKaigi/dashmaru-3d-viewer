@@ -166,6 +166,7 @@ http://localhost:8080/?motion=sit&time=3.2&background=peach
 座る動きでは、6.4秒を超える時刻は初回の座り込み後の4秒ループに対応します。
 `zoom` は有限の正の値を受け付け、実際の倍率は0.75〜約2.667倍の範囲に制限します。
 ジャンプでは、`expression` の指定より再生時刻による表情の切り替えが優先されます。
+不正な UTF-8 を含むクエリは全体を無視し、既定の表示設定で起動します。
 
 ## CI と GitHub Pages
 
@@ -174,16 +175,64 @@ http://localhost:8080/?motion=sit&time=3.2&background=peach
 Private の間も CI は実行しますが、Pages へのデプロイは Public のリポジトリでのみ行います。
 Pull Request のコードから Pages を公開することはありません。
 
-公開時は管理者が次を設定します。
+公開時は管理者が次を設定します。公開 URL と既存サイトへの影響を先に確認してください。
 
-1. リポジトリを Public に切り替えます。
-2. **Settings → Pages → Build and deployment → Source** を **GitHub Actions** にします。
-3. 組織・リポジトリの Actions 設定で、ワークフローに必要な Actions を許可します。
-4. `main` を更新するか、Actions から CI ワークフローを手動実行します。
-5. Pages のデプロイ結果と [公開 URL](https://flutterkaigi.github.io/dashmaru-3d-viewer/)を確認します。
+1. 下記の手順で公開 URL を決め、ワークフローの `--base-href` と README を合わせます。
+2. リポジトリを Public に切り替えます。
+3. **Settings → Pages → Build and deployment → Source** を **GitHub Actions** にします。
+4. 組織・リポジトリの Actions 設定で、ワークフローに必要な Actions を許可します。
+5. 専用ドメインを使う場合は、所有確認・Pages の Custom domain・DNS を下記の順で設定します。
+6. `main` を更新するか、Actions から CI ワークフローを手動実行します。
+7. Pages のデプロイ結果、HTTPS、モデルとライセンスの読み込み、既存イベントサイトへの影響を確認します。
 
-Pages 用ビルドは `--base-href /dashmaru-3d-viewer/` を指定し、`build/web` を配布します。
+現在のワークフローでは `--base-href /dashmaru-3d-viewer/` を指定し、`build/web` を配布します。
 パス末尾の `/` が必要です。リポジトリ名や公開先を変える場合は、ワークフローと README の URL も更新してください。
 
 `github-pages` Environment に承認ルールが設定されている場合、デプロイはそのルールに従います。
 リポジトリの公開状態を変えただけではデプロイは実行されないため、公開後にワークフローを実行してください。
+
+### 公開URLとCloudflare
+
+2026-10-11 時点で、組織の Pages サイト `FlutterKaigi/flutterkaigi.github.io` は
+`flutterkaigi.jp` をカスタムドメインとして使用しています。
+プロジェクトの Pages は、独自のドメインを設定しない場合、組織のカスタムドメインを引き継ぎます。
+詳細は [GitHub のカスタムドメインの説明](https://docs.github.com/en/pages/configuring-a-custom-domain-for-your-github-pages-site/about-custom-domains-and-github-pages)を参照してください。
+
+現在、次の転送を実際の HTTP 応答で確認しています。
+
+```text
+https://flutterkaigi.github.io/dashmaru-3d-viewer/
+  → http://flutterkaigi.jp/dashmaru-3d-viewer/
+  → https://flutterkaigi.jp/dashmaru-3d-viewer/
+  → https://2026.flutterkaigi.jp/
+```
+
+このままではデモに到達しません。Cloudflare の管理画面内の転送ルールは未確認です。
+また、`2026.flutterkaigi.jp` は既存の `FlutterKaigi/2026` リポジトリの Pages に設定されています。
+このホスト名や既存の DNS レコードをデモ用へ付け替えないでください。
+
+公開先の候補は次のとおりです。専用サブドメインは提案であり、まだ設定していません。
+
+| 公開先 | 必要な対応 | `--base-href` |
+| --- | --- | --- |
+| `https://dashmaru.flutterkaigi.jp/`（推奨） | 専用サブドメインを Pages と DNS に設定し、転送ルールの対象外であることを確認 | `/` |
+| `https://flutterkaigi.jp/dashmaru-3d-viewer/` | 現在のトップページへの転送から、このパスを除外 | `/dashmaru-3d-viewer/` |
+| `https://2026.flutterkaigi.jp/dashmaru-3d-viewer/` | 既存のイベントサイトの配布処理に組み込むか、パス単位のプロキシを別途設計 | `/dashmaru-3d-viewer/` |
+
+DNS はホスト名を対応付ける設定であり、URL のパスによる振り分けはできません。
+このリポジトリの CI は、既存のイベントサイトにファイルを追加したり DNS を変更したりしません。
+
+専用サブドメインを採用する場合の手順:
+
+1. 組織の Pages のドメイン所有確認が有効であることを確認します。
+2. ビルドの `--base-href` を `/` に変更し、README に決定した URL を記載します。
+3. このリポジトリの **Settings → Pages → Custom domain** に `dashmaru.flutterkaigi.jp` を設定します。
+4. Cloudflare DNS に CNAME `dashmaru` → `FlutterKaigi.github.io` を追加します。宛先にリポジトリ名やパスは含めません。まず **DNS only** で Pages の DNS チェックと証明書発行を確認します。
+5. Pages の **Enforce HTTPS** を有効にします。証明書の準備には時間がかかる場合があります。
+6. Cloudflare の転送ルールがこのサブドメインをイベントサイトへ転送しないことを確認します。プロキシを有効にする場合は、有効なオリジン証明書を確認し、既存サイトへの影響を調べたうえで **Full (strict)** を使用します。
+7. デモの表示・共有 URL・アセットと、`https://2026.flutterkaigi.jp/` の両方を確認します。
+
+GitHub Actions による公開では Custom domain は Pages の設定で管理します。
+手順の詳細は [GitHub のドメイン設定](https://docs.github.com/en/pages/configuring-a-custom-domain-for-your-github-pages-site/managing-a-custom-domain-for-your-github-pages-site)、
+[Cloudflare のプロキシ設定](https://developers.cloudflare.com/dns/proxy-status/)、
+[Full (strict)](https://developers.cloudflare.com/ssl/origin-configuration/ssl-modes/full-strict/)を参照してください。

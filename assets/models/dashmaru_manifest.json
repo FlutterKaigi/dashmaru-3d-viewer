@@ -1,6 +1,12 @@
 {
   "license": "CC-BY-NC-ND-4.0",
   "licenseUrl": "https://creativecommons.org/licenses/by-nc-nd/4.0/",
+  "licenseScope": "FlutterKaigi's original contributions only; underlying Dash rights and permissions are not changed.",
+  "noticeUrl": "https://github.com/FlutterKaigi/dashmaru-3d-viewer/blob/main/assets/models/NOTICE.md",
+  "underlyingCharacter": {
+    "name": "Dash",
+    "informationUrl": "https://docs.flutter.dev/dash"
+  },
   "height": 3.04,
   "front": "+Z",
   "up": "+Y",
@@ -62,5 +68,5 @@
       "tracks": 89
     }
   ],
-  "bytes": 11192796
+  "bytes": 11193220
 }

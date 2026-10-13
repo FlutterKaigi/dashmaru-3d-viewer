@@ -50,7 +50,7 @@ void main() {
       'だしゅまる 3D ビューア / MIT',
     ], await rootBundle.loadString('LICENSE'));
     yield LicenseEntryWithLineBreaks(
-      ['だしゅまる 3Dモデル / CC BY-NC-ND 4.0'],
+      ['だしゅまる 3Dモデル / 権利表記・利用条件'],
       '${await rootBundle.loadString('assets/models/NOTICE.md')}\n\n'
       '${await rootBundle.loadString('assets/models/LICENSE')}',
     );
@@ -674,8 +674,8 @@ class _DashmaruViewerState extends State<DashmaruViewer> {
       Expanded(
         child: Text(
           compact
-              ? '© 2026 FlutterKaigi'
-              : 'だしゅまる © 2026 FlutterKaigi  ·  CC BY-NC-ND 4.0',
+              ? '独自部分 © 2026 FlutterKaigi'
+              : '独自の創作部分 © 2026 FlutterKaigi  ·  CC BY-NC-ND 4.0',
           textAlign: TextAlign.end,
           overflow: TextOverflow.ellipsis,
           maxLines: 1,
@@ -689,8 +689,10 @@ class _DashmaruViewerState extends State<DashmaruViewer> {
           context: context,
           applicationName: 'だしゅまる 3D',
           applicationLegalese:
-              'キャラクター・3Dモデル・アニメーション\n'
+              'キャラクター・3Dモデル・アニメーションの\n'
+              'FlutterKaigiが権利を持つ独自の創作部分:\n'
               '© 2026 FlutterKaigi / CC BY-NC-ND 4.0\n'
+              '原Dash由来の表現: 原権利者の利用条件\n'
               'ビューアのコード: © 2026 FlutterKaigi / MIT',
         ),
       ),

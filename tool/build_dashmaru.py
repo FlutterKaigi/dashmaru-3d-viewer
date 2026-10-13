@@ -18,6 +18,16 @@ from dashmaru_materials import polish_materials
 PI = math.pi
 sin, cos, sqrt = math.sin, math.cos, math.sqrt
 OUT = Path(__file__).resolve().parents[1] / "assets" / "models"
+MODEL_RIGHTS = {
+    "license": "CC-BY-NC-ND-4.0",
+    "licenseUrl": "https://creativecommons.org/licenses/by-nc-nd/4.0/",
+    "licenseScope": "FlutterKaigi's original contributions only; underlying Dash rights and permissions are not changed.",
+    "noticeUrl": "https://github.com/FlutterKaigi/dashmaru-3d-viewer/blob/main/assets/models/NOTICE.md",
+    "underlyingCharacter": {
+        "name": "Dash",
+        "informationUrl": "https://docs.flutter.dev/dash",
+    },
+}
 
 
 def vadd(a, b):
@@ -58,10 +68,9 @@ class Glb:
             "asset": {
                 "version": "2.0",
                 "generator": "Dashmaru parametric sculpture / Python",
-                "copyright": "Character, 3D model and animations (c) 2026 FlutterKaigi. CC BY-NC-ND 4.0.",
+                "copyright": "Original contributions to Dashmaru character design, 3D model and animations (c) 2026 FlutterKaigi. CC BY-NC-ND 4.0. Rights in the underlying Dash character remain with their respective holders.",
                 "extras": {
-                    "license": "CC-BY-NC-ND-4.0",
-                    "licenseUrl": "https://creativecommons.org/licenses/by-nc-nd/4.0/",
+                    **MODEL_RIGHTS,
                     "source": "https://github.com/FlutterKaigi/dashmaru-3d-viewer",
                 },
             },
@@ -232,8 +241,7 @@ class Glb:
             struct.pack("<4sII", b"glTF", 2, 12 + len(body)) + body
         )
         summary = {
-            "license": "CC-BY-NC-ND-4.0",
-            "licenseUrl": "https://creativecommons.org/licenses/by-nc-nd/4.0/",
+            **MODEL_RIGHTS,
             "height": 3.04,
             "front": "+Z",
             "up": "+Y",

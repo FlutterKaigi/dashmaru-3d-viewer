@@ -54,7 +54,9 @@ Pull Request には、解決する問題、変更後の動作、検証結果を�
 
 ## コードとモデルの権利
 
-コードは [MIT License](LICENSE)、モデルは [CC BY-NC-ND 4.0](assets/models/LICENSE) です。
+コードは [MIT License](LICENSE) です。
+モデルのうちFlutterKaigiが権利を持つ独自の創作部分には、[CC BY-NC-ND 4.0](assets/models/LICENSE) が適用されます。
+原Dash由来の表現の権利と利用条件は、このライセンスによって変更されません。
 詳しい適用範囲は [ライセンスについて](docs/LICENSING.md)を確認してください。
 
 モデルの形状・材質・アニメーションなどの改変物を公開・配布する許可は、CC BY-NC-ND 4.0 に含まれません。

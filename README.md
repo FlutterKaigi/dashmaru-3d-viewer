@@ -63,9 +63,13 @@ macOS 用のプロジェクトも同梱しています。Xcode などの Flutter
 | 対象 | ライセンス・表示 |
 | --- | --- |
 | ビューアなどのソースコード | [MIT License](LICENSE) |
-| だしゅまるの3Dモデル | [CC BY-NC-ND 4.0](assets/models/LICENSE) |
-| モデルと原キャラクターのクレジット | [assets/models/NOTICE.md](assets/models/NOTICE.md) |
+| だしゅまるのキャラクター・3Dモデル・アニメーションのうち、FlutterKaigiが権利を持つ独自部分 | [CC BY-NC-ND 4.0](assets/models/LICENSE) |
+| 原Dashとの関係・モデルの権利表記 | [assets/models/NOTICE.md](assets/models/NOTICE.md) |
 | 適用範囲と利用時の注意 | [ライセンスについて](docs/LICENSING.md) |
+
+だしゅまるは、DartとFlutterのマスコット「Dash」をもとにしたキャラクターです。
+原Dash由来の表現の権利と利用条件は、FlutterKaigiの独自部分と区別されます。
+このリポジトリのCC BY-NC-ND 4.0は、原Dashに対する既存の許諾を変更しません。
 
 モデルの共有にはクレジットなどの条件があり、営利目的の利用や、改変したモデルの配布はこのライセンスでは許可されません。
 スポンサー向けの追加許諾は含みません。

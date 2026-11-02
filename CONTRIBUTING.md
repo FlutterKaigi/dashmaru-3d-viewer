@@ -24,7 +24,7 @@
 
 ```sh
 mise exec -- flutter pub get --enforce-lockfile
-mise exec -- dart format --output=none --set-exit-if-changed lib test hook
+mise exec -- dart format --output=none --set-exit-if-changed lib test hook tool
 mise exec -- flutter analyze
 mise exec -- flutter test
 python3 -m unittest discover -s tool -p 'test_*.py'

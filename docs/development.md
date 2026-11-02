@@ -102,7 +102,7 @@ Flutter Scene の読み込み時の変換に合わせ、アプリは Z 軸の負
 
 ```sh
 mise exec -- flutter pub get --enforce-lockfile
-mise exec -- dart format --output=none --set-exit-if-changed lib test hook
+mise exec -- dart format --output=none --set-exit-if-changed lib test hook tool
 mise exec -- flutter analyze
 mise exec -- flutter test
 python3 -m unittest discover -s tool -p 'test_*.py'

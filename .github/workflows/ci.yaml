@@ -32,7 +32,7 @@ jobs:
         run: flutter pub get --enforce-lockfile
 
       - name: Dart のフォーマットを確認
-        run: dart format --output=none --set-exit-if-changed lib test hook
+        run: dart format --output=none --set-exit-if-changed lib test hook tool
 
       - name: 静的解析
         run: flutter analyze
@@ -51,7 +51,7 @@ jobs:
         run: python3 tool/check_dashmaru.py --subframes 3
 
       - name: GitHub Pages 用に Web ビルド
-        run: flutter build web --release --base-href /dashmaru-3d-viewer/
+        run: flutter build web --release --base-href /
 
       - name: Pages 用成果物を保存
         if: >-

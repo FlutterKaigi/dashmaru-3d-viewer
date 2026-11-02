@@ -4,6 +4,8 @@ FlutterKaigi のキャラクター「だしゅまる」を、ブラウザーで�
 Flutter と Flutter Scene で、13種類の動き・4種類の表情・4種類の背景を切り替えられます。
 モデルデータと生成プログラムを同梱し、このリポジトリだけで起動・ビルドできます。
 
+[公開ビューアをブラウザーで開く](https://dashmaru.flutterkaigi.jp/)
+
 ## できること
 
 - 歩く・ジャンプ・手を振る・まばたき・待機・走る・ぶんぶん・座る・うなずく・首かしげ・おじぎ・よろこぶ・のびの13種類の動きを再生。
@@ -85,7 +87,7 @@ glTF 2.0 形式で、形状・材質・骨格・アニメーション・表情�
 リポジトリのルートで実行します。
 
 ```sh
-mise exec -- dart format --output=none --set-exit-if-changed lib test hook
+mise exec -- dart format --output=none --set-exit-if-changed lib test hook tool
 mise exec -- flutter analyze
 mise exec -- flutter test
 python3 -m unittest discover -s tool -p 'test_*.py'
@@ -99,4 +101,5 @@ mise exec -- flutter build web --release
 先に [ライセンスについて](docs/LICENSING.md)を確認してください。
 
 構成、再生成、描画確認は [開発ガイド](docs/development.md)にまとめています。
+公開設定と更新手順は [公開・保守ガイド](docs/publishing.md)を参照してください。
 変更の提案は [CONTRIBUTING.md](CONTRIBUTING.md)を参照してください。

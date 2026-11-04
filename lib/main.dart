@@ -214,45 +214,15 @@ class _DashmaruViewerState extends State<DashmaruViewer> {
     crossAxisAlignment: CrossAxisAlignment.end,
     children: [
       Expanded(
-        child: Column(
-          crossAxisAlignment: CrossAxisAlignment.start,
-          children: [
-            Row(
-              children: [
-                const FlutterLogo(size: 18),
-                const SizedBox(width: 8),
-                Flexible(
-                  child: Text(
-                    'FLUTTERKAIGI  /  DASHMARU 3D',
-                    style: TextStyle(
-                      fontSize: compact ? 10 : 11,
-                      color: _green,
-                      fontWeight: FontWeight.w700,
-                      letterSpacing: 1.6,
-                    ),
-                  ),
-                ),
-              ],
-            ),
-            SizedBox(height: tight ? 8 : 12),
-            Text(
-              'だしゅまる、3Dになる。',
-              style: TextStyle(
-                fontSize: compact ? 29 : (tight ? 36 : 42),
-                fontWeight: FontWeight.w800,
-                color: _ink,
-                letterSpacing: -1.5,
-                height: 1.2,
-              ),
-            ),
-            if (!tight) ...[
-              const SizedBox(height: 8),
-              const Text(
-                'Flutter で描く、小さなともだち。',
-                style: TextStyle(fontSize: 14, color: _muted),
-              ),
-            ],
-          ],
+        child: Text(
+          'だしゅまる3D Viewer',
+          style: TextStyle(
+            fontSize: compact ? 29 : (tight ? 36 : 42),
+            fontWeight: FontWeight.w800,
+            color: _ink,
+            letterSpacing: -1.5,
+            height: 1.2,
+          ),
         ),
       ),
       if (!compact)

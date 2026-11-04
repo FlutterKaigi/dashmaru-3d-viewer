@@ -186,11 +186,7 @@ class _DashmaruViewerState extends State<DashmaruViewer> {
               );
               // Reserve room for the model even when the controls wrap. Short
               // windows can scroll to every control without shrinking the stage.
-              final baseHeight = constraints.maxWidth < 360
-                  ? 820.0
-                  : compact
-                  ? 760.0
-                  : 680.0;
+              final baseHeight = compact ? 760.0 : 680.0;
               final columns = _motionColumns(
                 constraints.maxWidth - (compact ? 40 : 80),
               );

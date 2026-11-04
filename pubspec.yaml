@@ -22,6 +22,7 @@ dev_dependencies:
 flutter:
   uses-material-design: true
   assets:
+    - assets/branding/flutterkaigi-logo.png
     - flutter_scene_generated/
     - LICENSE
     - assets/models/LICENSE

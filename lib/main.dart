@@ -207,18 +207,35 @@ class _DashmaruViewerState extends State<DashmaruViewer> {
   );
 
   Widget _header(bool compact, bool tight) => Row(
-    crossAxisAlignment: CrossAxisAlignment.end,
+    crossAxisAlignment: CrossAxisAlignment.center,
     children: [
       Expanded(
-        child: Text(
-          'だしゅまる3D Viewer',
-          style: TextStyle(
-            fontSize: compact ? 29 : (tight ? 36 : 42),
-            fontWeight: FontWeight.w800,
-            color: _ink,
-            letterSpacing: -1.5,
-            height: 1.2,
-          ),
+        child: Row(
+          children: [
+            Image.asset(
+              'assets/branding/flutterkaigi-logo.png',
+              width: compact ? 40 : 52,
+              height: compact ? 40 : 52,
+              semanticLabel: 'FlutterKaigi 2026',
+            ),
+            SizedBox(width: compact ? 10 : 14),
+            Flexible(
+              child: FittedBox(
+                fit: BoxFit.scaleDown,
+                alignment: Alignment.centerLeft,
+                child: Text(
+                  'だしゅまる3D Viewer',
+                  style: TextStyle(
+                    fontSize: compact ? 29 : (tight ? 36 : 42),
+                    fontWeight: FontWeight.w800,
+                    color: _ink,
+                    letterSpacing: -1.5,
+                    height: 1.2,
+                  ),
+                ),
+              ),
+            ),
+          ],
         ),
       ),
       if (!compact)

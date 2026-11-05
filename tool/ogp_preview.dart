@@ -47,7 +47,7 @@ class OgpPreviewApp extends StatelessWidget {
 
   @override
   Widget build(BuildContext context) => MaterialApp(
-    title: 'だしゅまる 3D — OGP Preview',
+    title: 'だしゅまる3D Viewer — OGP Preview',
     debugShowCheckedModeBanner: false,
     theme: ThemeData(
       useMaterial3: true,
@@ -232,57 +232,28 @@ class _OgpPosterState extends State<_OgpPoster> {
             height: 550,
             child: _model(),
           ),
-          const Positioned(
+          Positioned(
             left: 72,
             top: 67,
-            child: Text(
-              'FLUTTERKAIGI  /  DASHMARU 3D',
-              style: TextStyle(
-                color: _green,
-                fontSize: 13,
-                fontWeight: FontWeight.w700,
-                letterSpacing: 1.8,
-              ),
+            child: Image.asset(
+              'assets/branding/flutterkaigi-logo.png',
+              width: 72,
+              height: 72,
+              semanticLabel: 'FlutterKaigi',
             ),
           ),
           const Positioned(
             left: 68,
-            top: 129,
+            top: 183,
             width: 560,
             child: Text(
-              'だしゅまる、\n3Dになる。',
+              'だしゅまる\n3D Viewer',
               style: TextStyle(
                 color: _ink,
-                fontSize: 68,
+                fontSize: 76,
                 fontWeight: FontWeight.w800,
-                height: 1.24,
+                height: 1.2,
                 letterSpacing: -2.2,
-              ),
-            ),
-          ),
-          const Positioned(
-            left: 73,
-            top: 335,
-            child: Text(
-              'ブラウザーで、動く。眺める。',
-              style: TextStyle(
-                color: _ink,
-                fontSize: 23,
-                fontWeight: FontWeight.w500,
-                letterSpacing: 0.3,
-              ),
-            ),
-          ),
-          const Positioned(
-            left: 74,
-            top: 392,
-            child: Text(
-              '13の動き  ·  4つの表情  ·  4つの背景',
-              style: TextStyle(
-                color: _muted,
-                fontSize: 16,
-                fontWeight: FontWeight.w500,
-                letterSpacing: 0.3,
               ),
             ),
           ),

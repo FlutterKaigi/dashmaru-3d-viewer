@@ -65,7 +65,7 @@ class DashmaruApp extends StatelessWidget {
 
   @override
   Widget build(BuildContext context) => MaterialApp(
-    title: 'だしゅまる 3D | FlutterKaigi',
+    title: 'だしゅまる3D Viewer | FlutterKaigi',
     debugShowCheckedModeBanner: false,
     theme: ThemeData(
       useMaterial3: true,

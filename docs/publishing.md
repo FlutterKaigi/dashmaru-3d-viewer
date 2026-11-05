@@ -14,7 +14,7 @@ GitHub Pages で配信し、Cloudflare で独自ドメインの DNS を設定し
 | GitHub Pages の Custom domain | `dashmaru.flutterkaigi.jp` |
 | Web ビルド | `flutter build web --release --base-href /` |
 | 配信するディレクトリ | `build/web` |
-| SNS 用画像 | `https://dashmaru.flutterkaigi.jp/ogp.png`（1200×630） |
+| SNS 用画像 | `https://dashmaru.flutterkaigi.jp/ogp-406926087d7e.png`（1200×630） |
 
 ビルドとデプロイは [CI ワークフロー](../.github/workflows/ci.yaml)で行います。
 Public の元リポジトリで、`main` に対して実行した場合だけデプロイします。
@@ -51,7 +51,7 @@ Pull Request では品質確認とビルドまでを行います。
 - 13種類の動き、4種類の表情・背景、再生・一時停止、速度、視点、ズーム、自動回転が操作できること。
 - 小さい画面や横向きでも、操作欄の最後までスクロールできること。
 - 右下の「ライセンス」から、コード・モデル・依存ライブラリの表示を開けること。
-- `https://dashmaru.flutterkaigi.jp/ogp.png` が表示され、SNS のリンクプレビューで画像・タイトル・説明が正しいこと。
+- `https://dashmaru.flutterkaigi.jp/ogp-406926087d7e.png` が表示され、SNS のリンクプレビューで画像・タイトル・説明が正しいこと。
 - [README](../README.md) の公開ビューアへのリンクから開けること。
 
 CI の Widget テストは GPU の実描画を代替しません。
@@ -79,6 +79,8 @@ python3 -m http.server 8081 --bind 127.0.0.1 --directory build/ogp-preview
 ブラウザーで `http://127.0.0.1:8081/` を開き、モデルの表示が完了したら「PNG を保存」を押します。
 画像はブラウザーの表示サイズにかかわらず1200×630で保存されます。
 ダウンロードした `ogp.png` を `web/ogp.png` に配置し、画像全体と文字・モデルの表示を確認してください。
+同じ画像を `web/ogp-<SHA256の先頭12桁>.png` に複製し、`web/index.html` の `og:image`・`twitter:image` と、このガイドの画像URLを更新します。
+画像URLは内容を変更するたびに切り替え、旧画像のキャッシュとの取り違えを避けます。`web/ogp.png` は既存の画像URLからも最新版を取得できるよう維持します。
 画像に含まれるキャラクター・モデル表現の権利区分は [ライセンスについて](LICENSING.md)を参照してください。
 
 ローカルサーバーを `Ctrl+C` で停止し、本番のビューアをビルドします。

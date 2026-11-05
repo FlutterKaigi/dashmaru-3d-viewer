@@ -10,17 +10,17 @@
     "prefer_related_applications": false,
     "icons": [
         {
-            "src": "icons/flutterkaigi-192.png",
+            "src": "icons/flutterkaigi-common-192.png",
             "sizes": "192x192",
             "type": "image/png"
         },
         {
-            "src": "icons/flutterkaigi-512.png",
+            "src": "icons/flutterkaigi-common-512.png",
             "sizes": "512x512",
             "type": "image/png"
         },
         {
-            "src": "icons/flutterkaigi-maskable-512.png",
+            "src": "icons/flutterkaigi-common-maskable-512.png",
             "sizes": "512x512",
             "type": "image/png",
             "purpose": "maskable"

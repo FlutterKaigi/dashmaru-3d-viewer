@@ -216,7 +216,7 @@ class _DashmaruViewerState extends State<DashmaruViewer> {
               'assets/branding/flutterkaigi-logo.png',
               width: compact ? 40 : 52,
               height: compact ? 40 : 52,
-              semanticLabel: 'FlutterKaigi 2026',
+              semanticLabel: 'FlutterKaigi',
             ),
             SizedBox(width: compact ? 10 : 14),
             Flexible(

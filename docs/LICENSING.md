@@ -13,7 +13,7 @@ FlutterKaigiが権利を持つ独自の創作部分の権利表記は © 2026 Fl
 | モデルの生成・検証プログラム（`tool/*.py`）のプログラムとしての表現 | [MIT](../LICENSE) |
 | `assets/models/dashmaru.glb` に含まれるFlutterKaigiが権利を持つ独自のキャラクター・モデル・アニメーション表現と、その複製・形式変換データ | [CC BY-NC-ND 4.0](../assets/models/LICENSE) |
 | 原Dash由来の表現 | 原権利者による利用条件。FlutterKaigiのライセンスによって変更されません |
-| `assets/branding/` のFlutterKaigiロゴ、`web/flutterkaigi-favicon.svg`、`web/favicon.ico`、`web/icons/flutterkaigi-*.png` | FlutterKaigiのロゴ利用条件。コードのMITライセンスには含まれません |
+| `assets/branding/` のFlutterKaigiロゴ、`web/flutterkaigi-common.svg`、`web/favicon.ico`、`web/icons/flutterkaigi-*.png` | FlutterKaigiのロゴ利用条件。コードのMITライセンスには含まれません |
 | Flutter・Flutter Sceneなどの依存ライブラリ、各社のロゴ・商標 | それぞれの権利者のライセンス・利用条件 |
 
 モデルに含まれる形状、マテリアル、リグ、アニメーションなどの表現については、
@@ -84,8 +84,13 @@ Flutterの商標・ロゴについては[Flutter Brand Guidelines](https://docs.
 FlutterKaigiのロゴについては[公式ロゴ利用ガイドライン](https://docs.flutterkaigi.jp/Logo-Guidelines.ja)
 を参照してください。
 
-画面左上のロゴは[FlutterKaigi/2026 の `apps/app/res/assets/shuriken-logo.png`](https://github.com/FlutterKaigi/2026/blob/cfad0723d4d5a0e85cf310c04d3cde88fb167434/apps/app/res/assets/shuriken-logo.png)、
-faviconとホーム画面用アイコンは同リポジトリの `apps/app/web/` から、元の画像を変更せずに複製しています。
+年号のないFlutterKaigi共通ロゴは、[FlutterKaigi/2026 の `apps/website/web/`](https://github.com/FlutterKaigi/2026/tree/cfad0723d4d5a0e85cf310c04d3cde88fb167434/apps/website/web) にある
+`favicon.svg`、`favicon.ico`、`favicon-{180,192,512}.png`、`favicon-maskable.png` を複製しています。
+画面左上の透過PNGは、同じSVGを以下のコマンドで形式変換したものです。ロゴの色・形は変更していません。
+
+```sh
+rsvg-convert --width 512 --height 512 --output assets/branding/flutterkaigi-logo.png web/flutterkaigi-common.svg
+```
 
 許諾されていない利用については、[FlutterKaigiの相談窓口](https://docs.flutterkaigi.jp/Logo-Guidelines.ja)
 から権利者に確認してください。

@@ -117,6 +117,12 @@ void main() {
           expect(world.speed, 0.5);
           expect(world.playing, isFalse);
           expect(world.yaw, 0.8);
+          // The model link stays reachable even when the compact footer wraps.
+          final modelLink = find.text('GitHubでモデルを見る');
+          await tester.ensureVisible(modelLink);
+          await tester.pump();
+          expect(modelLink.hitTestable(), findsOneWidget);
+          expect(tester.takeException(), isNull);
           await tester.pumpWidget(const SizedBox());
         },
       );

@@ -3,6 +3,7 @@ import 'package:flutter/gestures.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter/services.dart';
 import 'package:flutter_scene/scene.dart' as scene;
+import 'package:url_launcher/link.dart';
 
 import 'dashmaru_background.dart';
 import 'dashmaru_scene.dart';
@@ -11,6 +12,10 @@ const _ink = Color(0xFF183E36);
 const _green = Color(0xFF287757);
 const _muted = Color(0xFF698179);
 const _line = Color(0xFFE0E9E1);
+final _modelGitHubUri = Uri.https(
+  'github.com',
+  '/FlutterKaigi/dashmaru-3d-viewer/tree/main/assets/models',
+);
 
 const _motionShortcuts = [
   (LogicalKeyboardKey.digit1, '1'),
@@ -186,7 +191,8 @@ class _DashmaruViewerState extends State<DashmaruViewer> {
               );
               // Reserve room for the model even when the controls wrap. Short
               // windows can scroll to every control without shrinking the stage.
-              final baseHeight = compact ? 760.0 : 680.0;
+              // The compact footer has a separate 44px row for the model link.
+              final baseHeight = compact ? 804.0 : 680.0;
               final columns = _motionColumns(
                 constraints.maxWidth - (compact ? 40 : 80),
               );
@@ -627,59 +633,89 @@ class _DashmaruViewerState extends State<DashmaruViewer> {
     ],
   );
 
-  Widget _footer(bool compact) => Row(
-    children: [
-      _toolButton(
-        icon: _world.playing ? Icons.pause_rounded : Icons.play_arrow_rounded,
-        label: _world.playing ? '一時停止' : '再生',
-        onPressed: _ready ? _togglePlay : null,
-      ),
-      const SizedBox(width: 12),
-      DropdownButtonHideUnderline(
-        child: DropdownButton<double>(
-          value: _world.speed,
-          borderRadius: BorderRadius.circular(12),
-          isDense: true,
-          style: const TextStyle(color: _ink, fontSize: 12),
-          icon: const Icon(Icons.expand_more_rounded, size: 18, color: _muted),
-          items: [
-            for (final speed in [0.5, 1.0, 1.5])
-              DropdownMenuItem(
-                value: speed,
-                child: Text('${speed.toStringAsFixed(1)}×'),
-              ),
-          ],
-          onChanged: !_ready
-              ? null
-              : (value) => setState(() => _world.setSpeed(value!)),
+  Widget _footer(bool compact) {
+    final controls = Row(
+      children: [
+        _toolButton(
+          icon: _world.playing ? Icons.pause_rounded : Icons.play_arrow_rounded,
+          label: _world.playing ? '一時停止' : '再生',
+          onPressed: _ready ? _togglePlay : null,
         ),
-      ),
-      Expanded(
-        child: Text(
-          compact
-              ? '独自部分 © 2026 FlutterKaigi'
-              : '独自の創作部分 © 2026 FlutterKaigi  ·  CC BY-NC-ND 4.0',
-          textAlign: TextAlign.end,
-          overflow: TextOverflow.ellipsis,
-          maxLines: 1,
-          style: const TextStyle(fontSize: 10, color: _muted),
+        const SizedBox(width: 12),
+        DropdownButtonHideUnderline(
+          child: DropdownButton<double>(
+            value: _world.speed,
+            borderRadius: BorderRadius.circular(12),
+            isDense: true,
+            style: const TextStyle(color: _ink, fontSize: 12),
+            icon: const Icon(
+              Icons.expand_more_rounded,
+              size: 18,
+              color: _muted,
+            ),
+            items: [
+              for (final speed in [0.5, 1.0, 1.5])
+                DropdownMenuItem(
+                  value: speed,
+                  child: Text('${speed.toStringAsFixed(1)}×'),
+                ),
+            ],
+            onChanged: !_ready
+                ? null
+                : (value) => setState(() => _world.setSpeed(value!)),
+          ),
         ),
-      ),
-      IconButton(
-        tooltip: 'ライセンス',
-        icon: const Icon(Icons.info_outline_rounded, size: 18, color: _muted),
-        onPressed: () => showLicensePage(
-          context: context,
-          applicationName: 'だしゅまる 3D',
-          applicationLegalese:
-              'キャラクター・3Dモデル・アニメーションの\n'
-              'FlutterKaigiが権利を持つ独自の創作部分:\n'
-              '© 2026 FlutterKaigi / CC BY-NC-ND 4.0\n'
-              '原Dash由来の表現: 原権利者の利用条件\n'
-              'ビューアのコード: © 2026 FlutterKaigi / MIT',
+        Expanded(
+          child: Text(
+            compact
+                ? '独自部分 © 2026 FlutterKaigi'
+                : '独自の創作部分 © 2026 FlutterKaigi  ·  CC BY-NC-ND 4.0',
+            textAlign: TextAlign.end,
+            overflow: TextOverflow.ellipsis,
+            maxLines: 1,
+            style: const TextStyle(fontSize: 10, color: _muted),
+          ),
         ),
+        if (!compact) _modelLink(),
+        IconButton(
+          tooltip: 'ライセンス',
+          icon: const Icon(Icons.info_outline_rounded, size: 18, color: _muted),
+          onPressed: () => showLicensePage(
+            context: context,
+            applicationName: 'だしゅまる 3D',
+            applicationLegalese:
+                'キャラクター・3Dモデル・アニメーションの\n'
+                'FlutterKaigiが権利を持つ独自の創作部分:\n'
+                '© 2026 FlutterKaigi / CC BY-NC-ND 4.0\n'
+                '原Dash由来の表現: 原権利者の利用条件\n'
+                'ビューアのコード: © 2026 FlutterKaigi / MIT',
+          ),
+        ),
+      ],
+    );
+    if (!compact) return controls;
+    return Column(
+      crossAxisAlignment: CrossAxisAlignment.end,
+      children: [controls, const SizedBox(height: 4), _modelLink()],
+    );
+  }
+
+  Widget _modelLink() => Link(
+    uri: _modelGitHubUri,
+    target: LinkTarget.blank,
+    builder: (context, followLink) => TextButton.icon(
+      onPressed: followLink,
+      icon: const Icon(Icons.open_in_new_rounded, size: 16),
+      label: const Text('GitHubでモデルを見る'),
+      style: TextButton.styleFrom(
+        foregroundColor: _green,
+        minimumSize: const Size(0, 40),
+        visualDensity: VisualDensity.standard,
+        tapTargetSize: MaterialTapTargetSize.shrinkWrap,
+        textStyle: const TextStyle(fontSize: 12, fontWeight: FontWeight.w600),
+        padding: const EdgeInsets.symmetric(horizontal: 12, vertical: 10),
       ),
-    ],
+    ),
   );
 
   Widget _toolButton({
